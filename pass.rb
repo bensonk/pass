@@ -2,7 +2,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'erb'
-require 'less'
 
 set :wordlist, [ "abashing", "abduction", "abductions", "abidings", "abolitionist",
                  "abolitionists", "aboriginals", "abrasively", "abruptness", "absenteeism",
@@ -714,10 +713,10 @@ helpers do
   end
 end
 
-get '/screen.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  less :screen
-end
+#get '/screen.css' do
+#  content_type 'text/css', :charset => 'utf-8'
+#  less :screen
+#end
 
 get '/easy' do
   easy
