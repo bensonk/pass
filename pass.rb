@@ -695,7 +695,7 @@ helpers do
   def medium
     leet_mapping = { "A" => "4", "E" => "3", "I" => "1", "O" => "0", "B" => "6" }
     p = ""
-    random_word.each_char do |c|
+    random_word.scan(/./m) do |c|
       if leet_mapping.key?(c.upcase) and 0.7 > rand
         p += leet_mapping[c.upcase]
       else
