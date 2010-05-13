@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Pass password generator</title>
+    <link rel="stylesheet" type="text/css" href="screen.css"/>
+    <link rel="SHORTCUT ICON" href="/favicon.png"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+          var time = 500;
+          $("input").click(function() {
+            var url = "/" + $(this).attr("value");
+            console.log(url);
+            $.get(url, function(res) {
+              $("#password").hide().html(res).fadeIn(time);
+            });
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="content">
+      <h1>The Pass Password Generator</h1>
+      <p class="info">
+      This is a webapp designed to make it ridiculously easy to choose a
+      random and secure password for use in any situation in which you need a
+      one-off password.
+      </p>
+      <div id="buttons">
+        <input value="easy" type="submit">
+        <input value="medium" type="submit">
+        <input value="hard" type="submit">
+      </div>
+      <p id="password">********</p>
+      <p class="web20">Now with gratuitous ajax!</p>
+    </div>
+  </body>
+</html>
