@@ -4,17 +4,41 @@ require 'sinatra'
 require 'erb'
 require 'less'
 
+set :wordlist, File.new("wordlist.txt").readlines
+set :punctuation, [ "!", ".", ",", ";", ":", "/", "@", "\#", "$", "%", "^", "&", "*" ]
+set :leet_mapping, { "A" => "4",
+                     "E" => "3",
+                     "I" => "1",
+                     "O" => "0",
+                     "B" => "6" }
+
 helpers do 
+  def random_punctuation
+    settings.punctuation[(rand() * settings.punctuation.length).to_i - 1]
+  end
+
+  def random_word
+    return settings.wordlist[(rand * settings.wordlist.length).to_i - 1]
+  end
+
   def easy
-    "password"
+    random_word
   end
 
   def medium
-    "drowssap"
+    p = ""
+    random_word.each_char do |c|
+      if settings.leet_mapping.key?(c.upcase) and 0.7 < rand
+        p += settings.leet_mapping[c.upcase]
+      else
+        p += c
+      end
+    end
+    p.strip
   end
 
   def hard
-    "p4s5w0rd!"
+    word = "#{medium} #{medium} #{medium}#{random_punctuation}"
   end
 end
 
